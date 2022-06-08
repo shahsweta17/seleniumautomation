@@ -18,22 +18,24 @@ public class RegistrationPage extends Utils {
    private By _birthYear = By.name("DateOfBirthYear");
    private By _email = By.id("Email");
    private By _password = By.id("Password");
-   private  By _conformPassword = By.id("ConfirmPassword");
+   private  By _confirmPassword = By.id("ConfirmPassword");
    private By _registerButton = By.id("register-button");
 
+   LoadProp loadProp=new LoadProp();
 
 public void registrationDetail(){
     //select gender>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     clickOnElement(_genderButton);
 
     // enter firstname>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    typeText(_firstName, "Automation");
+    typeText(_firstName, loadProp.getProperty("firstName"));
 
     //enter lastname>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    typeText(_lastName, "Tester");
-    // driver.findElement(By.id("LastName")).sendKeys("Tester");
+    typeText(_lastName, loadProp.getProperty("lastName"));
 
+    //properties
     //select date of birth>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     Select birthday = new Select(driver.findElement(_birthDate));
     birthday.selectByIndex(17);
 
@@ -49,14 +51,14 @@ public void registrationDetail(){
     typeText(_email, "shahsweta" + randomDate() + "9@yahoo.com");
 
     //password>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    typeText(_password, "shwetashah");
+    typeText(_password, loadProp.getProperty("password"));
 
     //confirm password>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    typeText(_conformPassword, "shwetashah");
-    // driver.findElement(By.id("ConfirmPassword")).sendKeys("shwetashah" );
+    typeText(_confirmPassword, loadProp.getProperty("confirmPassword"));
 }
 public void clickOnRegistrationButton(){
     // click on register>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     clickOnElement(_registerButton);
+
 }
 }

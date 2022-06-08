@@ -8,6 +8,7 @@ import static org.example.BasePage.driver;
 import static org.example.Utils.clickOnElement;
 
 public class RegistrationSuccessPage extends Utils {
+    private By _clickOnContinue = By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[2]/a");
 
     public void verifyRegisterSuccessfully(){
         String expectedMessage = "Your registration completed";
@@ -18,7 +19,7 @@ public class RegistrationSuccessPage extends Utils {
     }
     public void clickOnContinueButton(){
         //click on continue
-         clickOnElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[2]/a"));
+         clickOnElement(_clickOnContinue);
     }
 
 }

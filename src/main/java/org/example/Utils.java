@@ -6,6 +6,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -21,7 +22,6 @@ public class Utils extends BasePage {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("ddmmyyyyhhmmss");
         return formatter.format(date);
-
     }
     public static void takeSnapShot(String a){
         TakesScreenshot scrShot =((TakesScreenshot) driver);
@@ -95,6 +95,17 @@ public class Utils extends BasePage {
     WebDriverWait  wait14 = new WebDriverWait(driver,Duration.ofSeconds(time));
     wait14.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
   }
+  public static void selectFromDropDownIndexValue(By by, int indexvalue){
+        Select select = new Select(driver.findElement(by));
+        select.selectByIndex(indexvalue);
+  }
+    public static void selectFromDropDownVisibleText(By by, int textvalue){
+        Select select = new Select(driver.findElement(by));
+        select.selectByIndex(textvalue);
+    }
+
+
+
 
 
 }

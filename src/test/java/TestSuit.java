@@ -13,7 +13,8 @@ public class TestSuit extends BaseTest {
     BuildYourOwnComputer buildYourOwnComputer = new BuildYourOwnComputer();
     ShoppingCartPage shoppingCartPage = new ShoppingCartPage();
     EmailAFriendPage emailAFriendPage = new EmailAFriendPage();
-
+    DesktopPage desktopPage = new DesktopPage();
+    NoopCommerceReleasePage noopCommerceReleasePage = new NoopCommerceReleasePage();
 
     @Test
     public void userShouldBeAbleToRegisterSuccessfully() {
@@ -59,17 +60,12 @@ public class TestSuit extends BaseTest {
         //click on register again
         registrationPage.clickOnRegistrationButton();
 
-        //click on computer
-        homePage.clickOnDesktopOnHomepage();
-
-        //click on desktop
-        homePage.clickOnDesktopOnHomepage();
+        //click on continue button
+        registrationSuccessPage.clickOnContinueButton();
 
         //click on build your own computer
         homePage.clickOnBuildOwnComputer();
 
-        // click on add to cart
-        buildYourOwnComputer.clickOnAddToCartButton();
         //email a friend detail
         emailAFriendPage.userShouldEmailAFriend();
     }
@@ -107,5 +103,49 @@ public class TestSuit extends BaseTest {
         //verify registered user is able to vote
         homePage.verifyRegisteredUserIsAbleToVote();
     }
+    @Test
+    public void productTitle(){
+        //select four elements
+        homePage.getProductTitles();
+    }
+    @Test
+    public void userShouldBeAbleToNavigateFacebookHomePage(){
+        //on home page click on facebook
+         homePage.clickOnFacebookButton();
+        //verify user on facebook page assert
+
+        //close window and come on main page
+    }
+
+    @Test
+   public void userIsNotAbleToVoteWithoutSelectingOption(){
+      //  //click on vote
+        homePage.voteButton();
+        //please select an answer assert
+
+       // click on ok assert
+        homePage.voteAlertMessage();
+    }
+    @Test
+    public void verifyUserIsAbleToSearchProductSuccessfully(){
+        homePage.enterWordInSearchTextBox("Nike");//Apple
+    }
+    @Test
+    public void verifyProductListIsInZToAFormat(){
+        homePage.verifyProductListedInZToAFormat();
+       homePage.clickOnSortByZToAOption();
+
+    }
+@Test
+    public void verifyUserCommentAddedToCommentList(){
+        homePage.clickOnDetailsButton();
+        noopCommerceReleasePage.verifyURL();
+        noopCommerceReleasePage.checkTitleOfThePage();
+        noopCommerceReleasePage.enterTitle();
+        noopCommerceReleasePage.enterComment();
+        noopCommerceReleasePage.clickOnCommentButton();
+        noopCommerceReleasePage.verifyMessageAfterClickingCommentButton();
+        noopCommerceReleasePage.verifyCommentHasBeenAddedToTheCommentList();
+}
 }
 

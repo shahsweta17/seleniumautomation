@@ -5,6 +5,7 @@ import org.testng.Assert;
 
 public class ShoppingCartPage extends Utils{
 
+
     public void userAddShoppingCart(){
         //check shoppingCart URL>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         String actualUrl = driver.getCurrentUrl();

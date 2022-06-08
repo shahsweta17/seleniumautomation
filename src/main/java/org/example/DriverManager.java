@@ -14,20 +14,24 @@ import static org.example.BasePage.driver;
 
 public class DriverManager extends Utils {
 
-    String browserName ="chrome";
-    public void startOfBrowser(){
+    String browserName = "chrome";
 
-        if (browserName.equalsIgnoreCase("chrome"))
-        {
+    public void startOfBrowser() {
+
+        if (browserName.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver", "src/test/java/drivers/chromedriver.exe");
             driver = new ChromeDriver();
-        }
-        else if(browserName.equalsIgnoreCase("Firefox")) {
+        } else if (browserName.equalsIgnoreCase("Firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe"); //location where Firefox is installed
             System.setProperty("webdriver.gecko.driver", "src/test/java/drivers/geckodriver.exe");
             driver = new FirefoxDriver();
-        }else{ System.out.println("provide a browser name");
+
+        } else if (browserName.equalsIgnoreCase("edge")) {
+            System.setProperty("webdriver.edge.driver", "src/test/java/drivers/msedgedriver.exe");
+            driver = new EdgeDriver();
+        } else {
+            System.out.println("provide a browser name:" + browserName);
         }
 
         //open Chrome browser
@@ -35,8 +39,9 @@ public class DriverManager extends Utils {
         driver.manage().window().maximize();
         driver.get("https://demo.nopcommerce.com/");
     }
+
     //close browser
-    public void closeTheBrowser(){
+    public void closeTheBrowser() {
         driver.quit();
     }
 }
