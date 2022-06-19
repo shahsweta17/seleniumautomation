@@ -10,7 +10,8 @@ public class BuildYourOwnComputer extends Utils{
     private By _os = By.id("product_attribute_4_9");
     private By _software = By.id("product_attribute_5_11");
     private By _Software = By.id("product_attribute_5_12");
-    private By _addtocart = By.id("add-to-cart-button-1");
+    private By _addToCart = By.id("add-to-cart-button-1");
+
 public void buildYourOwnComputerDetail(){
     //select the processor>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     Select processor = new Select(driver.findElement(_processor));
@@ -33,10 +34,11 @@ public void buildYourOwnComputerDetail(){
 
 
 }
+
 public void clickOnAddToCartButton(){
     //click on add to cart>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    clickOnElement(_addtocart);
+    clickOnElement(_addToCart);
 }
 
 

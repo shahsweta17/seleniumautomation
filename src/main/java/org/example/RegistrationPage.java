@@ -19,7 +19,7 @@ public class RegistrationPage extends Utils {
    private By _email = By.id("Email");
    private By _password = By.id("Password");
    private  By _confirmPassword = By.id("ConfirmPassword");
-   private By _registerButton = By.id("register-button");
+   private By _registerButton01 = By.id("register-button");
 
    LoadProp loadProp=new LoadProp();
 
@@ -35,20 +35,16 @@ public void registrationDetail(){
 
     //properties
     //select date of birth>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-    Select birthday = new Select(driver.findElement(_birthDate));
-    birthday.selectByIndex(17);
+    selectFromDropDownIndexValue(_birthDate,Integer.parseInt(loadProp.getProperty("birthDate")));
 
     //select month>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    Select birthMonth = new Select(driver.findElement(_birthMonth));
-    birthMonth.selectByValue("6");
+    selectFromDropDownIndexValue(_birthMonth,Integer.parseInt(loadProp.getProperty("birthMonth")));
 
     //select year>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    Select birthYear = new Select(driver.findElement(_birthYear));
-    birthYear.selectByVisibleText("2000");
+    selectFromDropDownVisibleText(_birthYear,loadProp.getProperty("birthYear"));
 
     //email>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    typeText(_email, "shahsweta" + randomDate() + "9@yahoo.com");
+    typeText(_email,loadProp.getProperty("emailFirstPart")  + randomDate() +loadProp.getProperty("emailSecondPart"));
 
     //password>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     typeText(_password, loadProp.getProperty("password"));
@@ -56,9 +52,9 @@ public void registrationDetail(){
     //confirm password>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     typeText(_confirmPassword, loadProp.getProperty("confirmPassword"));
 }
-public void clickOnRegistrationButton(){
+public void userClickOnRegistrationButton(){
     // click on register>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    clickOnElement(_registerButton);
+    clickOnElement(_registerButton01);
 
 }
 }

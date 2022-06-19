@@ -9,6 +9,7 @@ public class EmailAFriendPage extends Utils{
     private By _personalMessage = By.xpath("//*[@id=\"PersonalMessage\"]");
     private By _sendEmail = By.name("send-email");
     private By _sendMessage = By.className("result");
+
      public void userShouldEmailAFriend(){
         //click on email friend button
         driver.findElement(_emailFriendButton).click();

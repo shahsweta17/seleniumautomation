@@ -10,9 +10,9 @@ import java.util.Properties;
 public class LoadProp {
     static Properties prop = new Properties();
     static FileInputStream input;
-    static String propertiesFileLocation ="src/test/java/TestData/TestConfig.properties";
+    static String propertiesFileLocation = "src/test/java/TestData/TestConfig.properties";
 
-    public String getProperty(String key){
+    public String getProperty(String key) {
 
         try {
             input = new FileInputStream(propertiesFileLocation);
@@ -23,13 +23,14 @@ public class LoadProp {
         }
         return prop.getProperty(key);
     }
-   // @Test
-   // public void verifyMyLoadProp(){
-      //  System.out.println(getProperty("url"));
+
+    // @Test
+    public void verifyMyLoadProp() {
+        System.out.println(getProperty("url"));
 
 
     }
-
+}
 
 
 

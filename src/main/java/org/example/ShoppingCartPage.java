@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 public class ShoppingCartPage extends Utils{
-
+    private By _userAddShoppingCart =By.className("page-title");
+   private By _computerProduct =By.className("product-name");
 
     public void userAddShoppingCart(){
         //check shoppingCart URL>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -13,12 +14,12 @@ public class ShoppingCartPage extends Utils{
 
         //check shoppingCart page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         String expectedMessage = "Shopping cart";
-        String actualMessage = getTextFromElement(By.className("page-title"));
+        String actualMessage = getTextFromElement(_userAddShoppingCart);
         Assert.assertEquals(actualMessage, expectedMessage);
 
         //check your own computer product available in cart>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
         String ExpectedMessage = "Build your own computer";
-        String ActualMessage = getTextFromElement(By.className("product-name"));
+        String ActualMessage = getTextFromElement(_computerProduct);
         Assert.assertEquals(ActualMessage, ExpectedMessage);
     }
 

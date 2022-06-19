@@ -29,6 +29,11 @@ public class HomePage extends Utils {
     private By _voteButton = By.xpath("//button[@class=\"button-2 vote-poll-button\"]\n");
     private By _registerUserShouldVote = By.xpath("//span[@class=\"poll-total-votes\"]");
     private By _productTitles = By.xpath("//div[contains(@class,'product-grid')]//div[@class='item-box']//h2");
+    private By _clickOnFacebookButton =By.className("facebook");
+    private  By _enterWordInSearchTextBox =By.id("small-searchterms");
+    private  By _clickOnSearch =By.className("search-box-button");
+    private  By _clickAllProduct =By.xpath("//div[contains(@class,'product-grid')]//div[@class='item-box']//h2");
+    private  By _clickOnDetailsButton =By.xpath("/html/body/div[6]/div[3]/div/div/div/div/div[5]/div[2]/div[2]/div[3]/a");
 
     public void clickOnRegistrationButton() {
         // click on register button>>>>>>>>>>>>>>>>>>>>>>>
@@ -48,8 +53,6 @@ public class HomePage extends Utils {
     public void clickOnDesktopOnHomepage() {
         //click on computer
         driver.findElement(_computer).click();
-
-
         //click on desk top
         driver.findElement(_desktop).click();
     }
@@ -129,8 +132,7 @@ public class HomePage extends Utils {
     public void clickOnFacebookButton() {
         String MainWindow = driver.getWindowHandle();
         //click on facebook button//
-        clickOnElement(By.className("facebook"));
-
+        clickOnElement(_clickOnFacebookButton);
 
         //To handle all new opened window.
         Set<String> s1 = driver.getWindowHandles();
@@ -159,51 +161,28 @@ public class HomePage extends Utils {
 
         public void enterWordInSearchTextBox (String product){
             // enter text in searchTextBox//nike
-            typeText(By.id("small-searchterms"), product);
+            typeText(_enterWordInSearchTextBox, product);
             //click on search
-            clickOnElement(By.className("search-box-button"));
+            clickOnElement(_clickOnSearch);
+
             //verify url//
-
-            String expectedsearchUrl = "https://demo.nopcommerce.com/search?q=" + product;
-            String actualsearchUrl = driver.getCurrentUrl();
-            Assert.assertEquals(actualsearchUrl, expectedsearchUrl);
-
+            String expectedSearchUrl = "https://demo.nopcommerce.com/search?q=" + product;
+            String actualSearchUrl = driver.getCurrentUrl();
+            Assert.assertEquals(actualSearchUrl, expectedSearchUrl);
 
             //check all products
-            List<WebElement> productTitles = driver.findElements
-                    (By.xpath("//div[contains(@class,'product-grid')]//div[@class='item-box']//h2"));
+            List<WebElement> productTitles = driver.findElements(_clickAllProduct);
             for (WebElement e : productTitles) {
                 System.out.println(e.getText());
-
             }   }
 
-    public void verifyProductListedInZToAFormat(){
-        //Verify that all the products are listed in Z-A format (Assert Point)
-        ArrayList<String> beforeList = new ArrayList<String>();
-        List<WebElement> elementList = driver.findElements(By.xpath("//div[contains(@class,'product-grid')]//div[@class='item-box']//h2")); ////h2[@class='product-title']/a
-        for (WebElement we:elementList){
-            beforeList.add(we.getText().substring(0, 1));
-        }
-        Collections.sort(beforeList, Collections.reverseOrder());
-        System.out.println(beforeList);
-
-        List<String> afterList = new ArrayList<String>();
-        for (WebElement we:elementList){
-            afterList.add(we.getText().substring(0, 1));
-        }
-        System.out.println(afterList);
-        Assert.assertTrue(afterList.equals(beforeList));
-        Assert.assertEquals(afterList, beforeList, "List is not list from Z to A");
-    }
-    public void clickOnSortByZToAOption(){
-        //Under sort by functionality, select "Name Z-A" option
-        clickOnElement(By.xpath("//select[@id=\"products-orderby\"]/option[3]"));
-    }
-
-
-        public void clickOnDetailsButton () {
+      public void clickOnDetailsButton () {
             //On Home Page click under News and nopCommerce new release!, click on Details Button
-            clickOnElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div/div[5]/div[2]/div[2]/div[3]/a"));
+            clickOnElement(_clickOnDetailsButton);
+
+        }
+        public void clickOnCategoryLink(String categoryName){
+        clickOnElement(By.linkText(categoryName));
 
         }
     }

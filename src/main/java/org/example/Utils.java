@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.io.File;
 import java.io.IOException;
@@ -99,12 +100,13 @@ public class Utils extends BasePage {
         Select select = new Select(driver.findElement(by));
         select.selectByIndex(indexvalue);
   }
-    public static void selectFromDropDownVisibleText(By by, int textvalue){
+  public static void selectFromDropDownVisibleText(By by, String textvalue){
         Select select = new Select(driver.findElement(by));
-        select.selectByIndex(textvalue);
+        select.selectByVisibleText(textvalue);
     }
-
-
+    public static void verifyCurrentUrl(String url){
+       Assert.assertEquals(driver.getCurrentUrl(), url);
+    }
 
 
 
